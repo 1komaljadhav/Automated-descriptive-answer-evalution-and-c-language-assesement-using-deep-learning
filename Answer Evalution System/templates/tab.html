@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Page</title>
+    <style>
+        body {
+            -webkit-user-select: none; /* For Safari and Chrome */
+            -moz-user-select: none;    /* For Firefox */
+            -ms-user-select: none;     /* For Internet Explorer/Edge */
+            user-select: none;         /* Non-prefixed version for modern browsers */
+            -webkit-touch-callout: none; /* Disable callouts (e.g., on iOS) */
+        }
+    </style>
+    <script>
+        let warningCount = 0;
+        const maxWarnings = 5; // Maximum number of warnings before submission
+
+        function handleVisibilityChange() {
+            if (document.hidden) {
+                // Page is hidden (tab switched or minimized)
+                warningCount++;
+                alert(`Warning ${warningCount}: Switching tabs or minimizing the browser is not allowed.`);
+                
+                // Check if maximum warnings reached
+                if (warningCount >= maxWarnings) {
+                    // Submit exam and close tab
+                    submitExam();
+                }
+            }
+        }
+
+        function submitExam() {
+            // Code to submit the exam
+            alert('Submitting exam due to excessive tab switching/minimization.');
+            // You can replace this with actual form submission or exam submission logic
+            // e.g., document.forms[0].submit();
+            
+            // Close the tab after submission
+            window.close();
+        }
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        // Optional: Disable right-click context menu to prevent users from opening new tabs
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('Right-click is disabled on this page.');
+        });
+
+        // Disable copy, cut, and paste
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            alert('Copying is disabled on this page.');
+        });
+        document.addEventListener('cut', function(e) {
+            e.preventDefault();
+            alert('Cutting is disabled on this page.');
+        });
+        document.addEventListener('paste', function(e) {
+            e.preventDefault();
+            alert('Pasting is disabled on this page.');
+        });
+    </script>
+</head>
+<body>
+    <p>Your exam is in progress. Switching tabs, minimizing the browser, and copying/pasting text are not allowed.</p>
+    <!-- Your exam content goes here -->
+</body>
+</html>
